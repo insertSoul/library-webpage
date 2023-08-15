@@ -122,3 +122,37 @@ body, html {
     margin: 10px 10px 0px 5px; /* Add some spacing between the checkbox and label */
     vertical-align: middle; /* Align the checkbox vertically with the label text */
   }
+
+  /* For styling books in library*/
+
+  .book {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+    margin-bottom: 20px;
+  }
+  
+  /* Style for the book attributes */
+  .bookAttributes {
+    margin: 5px 0;
+    font-size: 16px;
+  }
+  
+  /* Style for the title */
+  .bookAttributes:first-child {
+    font-weight: bold;
+    font-size: 18px;
+  }
+  
+  /* Style for the read status */
+  .bookRead{
+    color: #008000; /* Green color for "Read" */
+    font-style: italic;
+  }
+
+  .bookNotRead{
+    color: #b70404; /* red color for "not Read" */
+    font-style: italic;
+  }

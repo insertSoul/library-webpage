@@ -30,19 +30,40 @@ function addBookToLibrary() {
 };
 
 function displayBooks() {
-    bookList.innerHTML = '';
+    bookList.textContent = '';
 
     myLibrary.forEach(book => {
         const bookDiv = document.createElement('div');
         bookDiv.classList.add('book');
 
-        const bookInfo = document.createElement('p')
-        bookInfo.textContent = book.info();
+        // Create <p> elements for each book attribute
+        const titlePara = document.createElement('p');
+        titlePara.classList.add('bookAttributes');
+        titlePara.textContent = `Title: ${book.title}`;
 
-        bookDiv.appendChild(bookInfo);
-        bookList.appendChild(bookDiv)
-    })
+        const authorPara = document.createElement('p');
+        authorPara.classList.add('bookAttributes');
+        authorPara.textContent = `Author: ${book.author}`;
 
+        const pagesPara = document.createElement('p');
+        pagesPara.classList.add('bookAttributes');
+        pagesPara.textContent = `Pages: ${book.pages}`;
+
+        const readStatusPara = document.createElement('p');
+        readStatusPara.classList.add('bookAttributes');
+        readStatusPara.textContent = `${book.readStatus ? 'Read' : 'Not read yet'}`;
+        book.readStatus ? readStatusPara.classList.add('bookRead') : readStatusPara.classList.add('bookNotRead')
+        
+
+        // Append <p> elements to the bookDiv
+        bookDiv.appendChild(titlePara);
+        bookDiv.appendChild(authorPara);
+        bookDiv.appendChild(pagesPara);
+        bookDiv.appendChild(readStatusPara);
+
+        // Append the bookDiv to the bookList
+        bookList.appendChild(bookDiv);
+    });
 }
 
 //DOM elements
