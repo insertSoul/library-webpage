@@ -1,6 +1,6 @@
 const myLibrary = []
 
-//Object constructer
+//Object constructor
 function Book(title, author, pages, readStatus){
     this.title = title
     this.author = author
@@ -53,13 +53,14 @@ const testPrint = document.querySelector('.testPrint');
 const bookList = document.getElementById('bookList');
 
 addBookButton.addEventListener("click", () => {
-    console.log("Button clicked")
+    addBookForm.classList.toggle('hidden')
     addBookForm.reset()
 });
 
 addBookForm.addEventListener('submit', (event) => {
     event.preventDefault();
     addBookToLibrary();
+    addBookForm.classList.toggle('hidden')
 });
 
 

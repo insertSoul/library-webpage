@@ -3,6 +3,9 @@ body, html {
     margin: 0;
     padding: 0;
   }
+  .hidden{
+    display: none;
+  }
   
   /* Create a flex container to arrange header, container, and footer */
   body {
