@@ -18,3 +18,16 @@ function addBookToLibrary() {
     //to build
 }
 
+const addBookButton = document.querySelector('#addBookButton');
+const addBookForm = document.getElementById('addBookForm');
+const testPrint = document.querySelector('.testPrint'); 
+
+addBookButton.addEventListener("click", () => console.log("Button clicked"));
+addBookForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const title = document.getElementById('title').value;
+    const author = document.getElementById('author').value;
+    const pages = document.getElementById('pages').value;
+    testPrint.textContent = `Title entered: ${title} Author entered: ${author} Pages entered: ${pages} `;
+});
+
