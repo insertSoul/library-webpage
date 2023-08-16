@@ -6,6 +6,16 @@ body, html {
   .hidden{
     display: none;
   }
+
+:root{
+ --colour1: #264653;
+ --colour2: #2A9D8F;
+ --colour3: #e9c46a47;
+ --colour4: #ea8a4482;
+ --colour5: #E76F51;
+ --colour6: #59C567;
+              }
+
   
   /* Create a flex container to arrange header, container, and footer */
   body {
@@ -15,7 +25,7 @@ body, html {
   }
   
   .header {
-    background-color: #333;
+    background-color: var(--colour1);
     color: white;
     text-align: center;
     padding: 20px;
@@ -24,15 +34,18 @@ body, html {
   .container {
     flex: 1; /* Allow container to take remaining vertical space */
     padding: 10px;
+    background-color: var(--colour3);
   }
 
-  #bookList >* {
-    position: relative;
-    z-index: 1;
+  #bookList{ 
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-gap: 80px;
+    padding: 40px
   }
   
   .footer {
-    background-color: #333;
+    background-color: var(--colour1);
     color: white;
     text-align: center;
     padding: 15px;
@@ -47,7 +60,7 @@ body, html {
     font-size: 16px;
     font-weight: bold;
     color: white;
-    background-color: #007bff;
+    background-color: var(--colour2);
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -55,7 +68,7 @@ body, html {
   }
   
   .button:hover {
-    background-color: #55e7e4;
+    background-color: var(--colour5) ;
   }
 
   /* Style for the form */
@@ -63,10 +76,10 @@ body, html {
     width: 400px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #f8f9fa;
+    background-color: var(--colour1);
     border: 1px solid #ced4da;
-    border-radius: 5px;
-    opacity: 95%;
+    border-radius: 10px;
+    opacity: 97%;
     box-shadow: 12px 10px 15px rgba(0, 0, 0, 0.1);
     position: absolute;
     z-index: 2;
@@ -79,6 +92,7 @@ body, html {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
+    color: white
   }
   
   #addBookForm input[type="text"],
@@ -102,7 +116,7 @@ body, html {
     font-size: 16px;
     font-weight: bold;
     color: white;
-    background-color: #007bff;
+    background-color: var(--colour2);
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -110,7 +124,7 @@ body, html {
   }
   
   #addBookForm input[type="submit"]:hover {
-    background-color: #080909;
+    background-color: var(--colour5);
   }
   #addBookForm label[type="checkbox"]:hover {
     background-color:black;
@@ -123,20 +137,30 @@ body, html {
     vertical-align: middle; /* Align the checkbox vertically with the label text */
   }
 
+  
+
   /* For styling books in library*/
 
   .book {
-    border: 1px solid #ddd;
-    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  align-items: center;
+    padding: 30px;
     border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    background-color: #f9f9f9;
-    margin-bottom: 20px;
+    box-shadow: 10px 10px 20px rgb(0 0 0 / 22%);
+    background-color: var(--colour4);
+  }
+
+  p.bookAttributes{
+
+
   }
   
   /* Style for the book attributes */
   .bookAttributes {
-    margin: 5px 0;
+    font-family: 'helvetica';
+    margin-bottom: 0px;
     font-size: 16px;
   }
   
@@ -144,15 +168,23 @@ body, html {
   .bookAttributes:first-child {
     font-weight: bold;
     font-size: 18px;
+    margin-top: 0;
+  }
+
+  p.bookAttributes:last-child-child {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: -10px;
   }
   
   /* Style for the read status */
   .bookRead{
-    color: #008000; /* Green color for "Read" */
+    color: var(--colour2); /* Green color for "Read" */
     font-style: italic;
+    
   }
 
   .bookNotRead{
-    color: #b70404; /* red color for "not Read" */
+    color: var(--colour5); /* red color for "not Read" */
     font-style: italic;
   }
