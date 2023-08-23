@@ -71,6 +71,7 @@ body, html {
     background-color: var(--colour5) ;
   }
 
+
   /* Style for the form */
 #addBookForm {
     width: 400px;
@@ -145,14 +146,38 @@ body, html {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-  align-items: center;
+    align-items: center;
     padding: 30px;
     border-radius: 10px;
     box-shadow: 10px 10px 20px rgb(0 0 0 / 22%);
     background-color: var(--colour4);
   }
+  button.bookAttributes{  
+    margin-top: 20px;
+    display: block;
+    width: 110%;
+    text-align: center;
+    white-space: nowrap;
+  }
 
-  p.bookAttributes{
+
+  button.bookAttributes.bookNotRead{
+    background-color: var(--colour2);
+  }
+
+  button.bookAttributes.bookNotRead:hover{
+    background-color: var(--colour5);
+    color: var(--colour2);
+  
+  }
+
+  button.bookAttributes.bookRead{
+    background-color: var(--colour5);
+  }
+
+  button.bookAttributes.bookRead:hover{
+    background-color: var(--colour2);
+    color: var(--colour5);
 
 
   }

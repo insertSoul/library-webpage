@@ -1,4 +1,8 @@
-const myLibrary = []
+const myLibrary = [{title: 'test', author: 'test1', pages: '123', readStatus: false}, 
+    {title: 'test2', author: 'test3', pages: '456', readStatus: true} ]
+const bookList = document.getElementById('bookList');
+
+displayBooks();
 
 //Object constructor
 function Book(title, author, pages, readStatus){
@@ -24,6 +28,7 @@ function addBookToLibrary() {
     const readStatus = document.getElementById('readStatus').checked;
 
     const newBook = new Book(title, author, pages, readStatus);
+    console.log(newBook);
     myLibrary.push(newBook);
     console.table(myLibrary);
     displayBooks();
@@ -36,7 +41,7 @@ function displayBooks() {
         const bookDiv = document.createElement('div');
         bookDiv.classList.add('book');
 
-        // Create <p> elements for each book attribute
+        // Create <p> and button elements for each book attribute
         const titlePara = document.createElement('p');
         titlePara.classList.add('bookAttributes');
         titlePara.textContent = `Title: ${book.title}`;
@@ -49,17 +54,20 @@ function displayBooks() {
         pagesPara.classList.add('bookAttributes');
         pagesPara.textContent = `Pages: ${book.pages}`;
 
-        const readStatusPara = document.createElement('p');
-        readStatusPara.classList.add('bookAttributes');
-        readStatusPara.textContent = `${book.readStatus ? 'Read' : 'Not read yet'}`;
-        book.readStatus ? readStatusPara.classList.add('bookRead') : readStatusPara.classList.add('bookNotRead')
+        const readStatusButton = document.createElement('button')
+        readStatusButton.classList.add('bookAttributes', 'button');
+
+        readStatusButton.textContent = `${book.readStatus ? 'Read' : 'Not read yet'}`;
+        //adds class based on if book is read
+        book.readStatus ? readStatusButton.classList.add('bookRead') : readStatusButton.classList.add('bookNotRead')
+
         
 
-        // Append <p> elements to the bookDiv
+        // Append <p>  and button elements to the bookDiv
         bookDiv.appendChild(titlePara);
         bookDiv.appendChild(authorPara);
         bookDiv.appendChild(pagesPara);
-        bookDiv.appendChild(readStatusPara);
+        bookDiv.appendChild(readStatusButton);
 
         // Append the bookDiv to the bookList
         bookList.appendChild(bookDiv);
@@ -71,7 +79,6 @@ function displayBooks() {
 const addBookButton = document.querySelector('#addBookButton');
 const addBookForm = document.getElementById('addBookForm');
 const testPrint = document.querySelector('.testPrint'); 
-const bookList = document.getElementById('bookList');
 
 addBookButton.addEventListener("click", () => {
     addBookForm.classList.toggle('hidden')
