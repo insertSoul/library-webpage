@@ -1,11 +1,12 @@
-const myLibrary = [{title: 'test', author: 'test1', pages: '123', readStatus: false}, 
-    {title: 'test2', author: 'test3', pages: '456', readStatus: true} ]
+const myLibrary = [{title: 'test', author: 'test1', pages: '123', readStatus: false, bookId: 0}, 
+    {title: 'test2', author: 'test3', pages: '456', readStatus: true, bookId: 1}  ]
 const bookList = document.getElementById('bookList');
 
 displayBooks();
 
 //Object constructor
-function Book(title, author, pages, readStatus){
+function Book(title, author, pages, readStatus, bookId){
+    this.bookId = bookId
     this.title = title
     this.author = author
     this.pages = pages
@@ -20,19 +21,25 @@ Book.prototype.info = function() {
     }
 };
 
-
+let bookId = 1;
 function addBookToLibrary() {
     const title = document.getElementById('title').value;
     const author = document.getElementById('author').value;
     const pages = document.getElementById('pages').value;
     const readStatus = document.getElementById('readStatus').checked;
+    bookId ++;
 
-    const newBook = new Book(title, author, pages, readStatus);
+    const newBook = new Book(title, author, pages, readStatus, bookId);
     console.log(newBook);
     myLibrary.push(newBook);
     console.table(myLibrary);
     displayBooks();
 };
+function clearBook (){
+    bookList.textContent = '';
+
+
+}
 
 function displayBooks() {
     bookList.textContent = '';
@@ -55,11 +62,24 @@ function displayBooks() {
         pagesPara.textContent = `Pages: ${book.pages}`;
 
         const readStatusButton = document.createElement('button')
-        readStatusButton.classList.add('bookAttributes', 'button');
+        readStatusButton.classList.add('bookAttributes', 'button', 'readButton');
 
         readStatusButton.textContent = `${book.readStatus ? 'Read' : 'Not read yet'}`;
         //adds class based on if book is read
         book.readStatus ? readStatusButton.classList.add('bookRead') : readStatusButton.classList.add('bookNotRead')
+
+        //set an id on the button div
+        readStatusButton.setAttribute('data-book-id', book.bookId);
+
+        // Setting up click event listener
+        readStatusButton.addEventListener('click', (event) => {
+            const clickedBookId = event.target.getAttribute('data-book-id');
+            toggleReadStatus(clickedBookId); 
+            displayBooks();
+        });
+
+
+
 
         
 
@@ -74,11 +94,23 @@ function displayBooks() {
     });
 }
 
+function toggleReadStatus(bookIndex){
+    let currentBook = myLibrary[bookIndex];
+    if (currentBook.readStatus == false ){
+        currentBook.readStatus = true;
+    } else {
+        currentBook.readStatus = false;
+    }
+    console.table(myLibrary)
+
+}
+
 //DOM elements
 
 const addBookButton = document.querySelector('#addBookButton');
 const addBookForm = document.getElementById('addBookForm');
-const testPrint = document.querySelector('.testPrint'); 
+const readButton = document.querySelectorAll('.readButton');
+
 
 addBookButton.addEventListener("click", () => {
     addBookForm.classList.toggle('hidden')
@@ -90,5 +122,4 @@ addBookForm.addEventListener('submit', (event) => {
     addBookToLibrary();
     addBookForm.classList.toggle('hidden')
 });
-
 
